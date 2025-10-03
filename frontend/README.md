@@ -1,4 +1,4 @@
-# Shui Board (G) — Frontend
+# Shui Board — Frontend
 
 Konfig:
 ```
