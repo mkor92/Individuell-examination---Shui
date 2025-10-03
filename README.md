@@ -1,6 +1,4 @@
 # Shui Board
-
-**Uppgift:** Individuell examination – Shui (**G-krav**).  
 Backend: API Gateway + Lambda + DynamoDB (Serverless).  
 Frontend: React + Vite (S3-hosting).
 
