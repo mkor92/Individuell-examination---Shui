@@ -1,4 +1,4 @@
-# Shui Board (G) – v2
+# Shui Board
 
 **Uppgift:** Individuell examination – Shui (**G-krav**).  
 Backend: API Gateway + Lambda + DynamoDB (Serverless).  
@@ -31,18 +31,3 @@ aws s3 sync dist/ s3://shui-board-g-mk --delete
 # (valfritt) bucket policy: se bucket-policy.json
 ```
 
-## Inlämning (Azomo)
-1. Länka till GitHub-repot (backend + frontend + denna README).
-2. Lägg **S3 website-URL** i kommentaren, t.ex. `http://shui-board-g-mk.s3-website.eu-north-1.amazonaws.com`.
-3. Lägg också din **API-bas-URL**.
-4. Verifiera att inga fel syns i webbkonsolen (CORS m.m. hanteras i Lambda).
-
-## Test
-- Postman: `shui-g.postman_collection.json` (ange `{{baseUrl}}`).
-- VSCode REST Client: `api.http` (ändra `@baseUrl`).
-
-## Rensa
-```bash
-cd backend
-npx serverless remove --stage prod
-```
