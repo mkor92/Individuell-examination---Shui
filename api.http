@@ -1,0 +1,23 @@
+### List
+GET {{baseUrl}}/messages
+Content-Type: application/json
+
+### Create
+POST {{baseUrl}}/messages
+Content-Type: application/json
+
+{
+  "username": "mk",
+  "text": "hej från rest client"
+}
+
+### Update (byt ut :id)
+PUT {{baseUrl}}/messages/:id
+Content-Type: application/json
+
+{
+  "text": "uppdaterat via rest client"
+}
+
+### Variables
+@baseUrl = https://YOUR_API_ID.execute-api.eu-north-1.amazonaws.com

@@ -1,0 +1,74 @@
+service: shui-board-g
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-north-1
+  stage: prod
+  environment:
+    TABLE_NAME: ${self:custom.tableName}
+  httpApi:
+    cors:
+      allowedOrigins:
+        - "*"
+      allowedHeaders:
+        - "*"
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - OPTIONS
+      maxAge: 86400
+      allowCredentials: false
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:PutItem
+            - dynamodb:GetItem
+            - dynamodb:UpdateItem
+            - dynamodb:Scan
+          Resource:
+            - arn:aws:dynamodb:${aws:region}:*:table/${self:custom.tableName}
+
+functions:
+  createMessage:
+    handler: src/createMessage.handler
+    events:
+      - httpApi:
+          method: POST
+          path: /messages
+
+  updateMessage:
+    handler: src/updateMessage.handler
+    events:
+      - httpApi:
+          method: PUT
+          path: /messages/{id}
+
+  listMessages:
+    handler: src/listMessages.handler
+    events:
+      - httpApi:
+          method: GET
+          path: /messages
+
+resources:
+  Resources:
+    MessagesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.tableName}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+custom:
+  tableName: ${sls:stage, 'prod'}-shui-g-messages

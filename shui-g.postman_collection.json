@@ -1,0 +1,88 @@
+{
+  "info": {
+    "name": "Shui Board (G) API",
+    "_postman_id": "d6b9d3d6-0000-4000-9000-000000000001",
+    "description": "Postman collection for Shui G API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "List messages",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/messages",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "messages"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"mk\",\n  \"text\": \"hej fr\\u00e5n postman\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/messages",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "messages"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update message",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"uppdaterat via postman\"\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/messages/:id",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "messages",
+            ":id"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://YOUR_API_ID.execute-api.eu-north-1.amazonaws.com"
+    }
+  ]
+}
